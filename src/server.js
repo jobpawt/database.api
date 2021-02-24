@@ -40,9 +40,9 @@ app.use('/book', bookRoute)
 app.use('/payment', paymentRoute)
 app.use('/send/product', sendProductRote)
 app.use('/send/book', sendBookRoute)
+app.use('/send/type', sentTypeRoute)
 app.use('/approve/store', approveRoute)
 app.use('/promotion', promotionRoute)
-app.use('/sent/type', sentTypeRoute)
 
 app.options("*", (req, res, next) => {
     const error = new HttpException(404, 'Endpoint Not Found')

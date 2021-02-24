@@ -1,5 +1,5 @@
 const HttpException = require('../utils/HttpException.utils')
-const BuyModel = require('../models/book.model')
+const BuyModel = require('../models/buy.model')
 const CreateID = require('../utils/CreateID')
 
 class BuyController{
@@ -24,18 +24,19 @@ class BuyController{
         const result = await BuyModel.update(req.body, req.body.id)
         if(!result)
             throw new HttpException(404, 'Something went wrong')
-        res.staus(200).send(`${this.table} was edited`)
+        res.status(200).send(`${this.table} was edited`)
     }
 
     delete = async(req, res, next) => {
         const result = await BuyModel.delete({buy_id : req.params.id})
         if(!result)
             throw new HttpException(404, `${this.table} not found`)
-        res.staus(200).send(`${this.table} was deleted`)
+        res.status(200).send(`${this.table} was deleted`)
     }
 
     create = async(req, res, next) => {
-        req.body.bid = (await CreateID.hash(req.body)).toString().replace('/', '')
+        req.body.buy_id = (await CreateID.hash(req.body)).toString().replace('/', '')
+        console.log('debug uid => '+ req.body.uid);
         const result = await BuyModel.create(req.body)
         if(!result)
             throw new HttpException(404, 'Something went wrong')

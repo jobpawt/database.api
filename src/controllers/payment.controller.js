@@ -30,14 +30,15 @@ class PaymentController {
     res.staus(200).send(`${this.table} was deleted`);
   };
 
-  create = async (req, res, next) => {
+  create = async (req, res, next) =>  {
     req.body.payment_id = (await CreateID.hash(req.body))
       .toString()
       .replace("/", "");
     const result = await PaymentModel.create(req.body);
     if (!result) throw new HttpException(404, "Something went wrong");
-    res.status(200).send(`${this.table} was added`);
+    res.status(200).send({"id" : req.body.payment_id});
   };
+
 }
 
 module.exports = new PaymentController();

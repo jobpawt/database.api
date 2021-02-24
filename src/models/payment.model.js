@@ -20,9 +20,9 @@ class PaymentModel {
     return result[0];
   };
 
-  create = async ({ payment_id, type, picture_url }) => {
-    const sql = `INSERT INTO ${this.table} (payment_id, type, picture_url) VALUES (?,?,?)`;
-    const result = await query(sql, [payment_id, type, picture_url]);
+  create = async ({ payment_id, type, url}) => {
+    const sql = `INSERT INTO ${this.table} (payment_id, type, url, status) VALUES (?,?,?,?)`;
+    const result = await query(sql, [payment_id, type, url, 'not approve']);
     const affectedRows = result ? result.affectedRows : 0;
     return affectedRows;
   };

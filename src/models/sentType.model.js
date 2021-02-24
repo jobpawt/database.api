@@ -2,7 +2,7 @@ const query = require('../db/connect')
 const pairSQL = require('../utils/pairSQL')
 
 class SentTypeModel{
-    table = 'sent_type'
+    table = 'send_type'
 
     find = async(params = {}) => {
         const keys = Object.keys(params) 
@@ -21,10 +21,10 @@ class SentTypeModel{
         return result[0]
     }
 
-    create = async({sent_type_id, type, recive_date, position, address, tel}) => {
-        const sql = `INSERT INTO ${this.table} (sent_type_id, type, recive_date, position, address, tel) VALUES (?,?,?,?,?,?)`
-        const result = await query(sql, [sent_type_id, type, recive_date, position, address, tel])
-        const affectedrows = result ? result.affectedrows : 0
+    create = async({send_type_id, type, recive_date, position, address, phone}) => {
+        const sql = `INSERT INTO ${this.table} (send_type_id, type, recive_date, position, address, phone) VALUES (?,?,?,?,?,?)`
+        const result = await query(sql, [send_type_id, type, recive_date, position, address, phone])
+        const affectedrows = result ? result.affectedRows : 0
         return affectedrows
     }
 
