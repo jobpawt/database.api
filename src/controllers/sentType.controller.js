@@ -14,7 +14,7 @@ class SentTypeController{
     }         
 
     getById = async(req, res, next) => {
-        const result = await SentTypeModel.findOne({sent_type_id: req.params.id}) 
+        const result = await SentTypeModel.findOne({send_type_id: req.params.id}) 
         if(!result)
             throw new HttpException(404, `Not found any ${this.table}`)
         res.status(206).send(result)

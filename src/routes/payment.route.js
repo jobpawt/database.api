@@ -4,10 +4,10 @@ const awaitHandler = require('../middleware/awaitHandler.middleware')
 const auth = require('../middleware/auth.middleware')
 
 //get all 
-router.get('/all', awaitHandler(PaymentController.getAll))
+router.get('/all',auth(), awaitHandler(PaymentController.getAll))
 
 //get one 
-router.get('/:id', awaitHandler(PaymentController.getById))
+router.get('/:id',auth(), awaitHandler(PaymentController.getById))
 
 //create 
 router.post('/create',auth(), awaitHandler(PaymentController.create))

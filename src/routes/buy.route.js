@@ -4,7 +4,7 @@ const auth = require('../middleware/auth.middleware')
 const BuyController = require('../controllers/buy.controller')
 
 //get all 
-router.get('/all', awaitHandler(BuyController.getAll))
+router.get('/all',auth(), awaitHandler(BuyController.getAll))
 
 //get one 
 router.get('/:id', awaitHandler(BuyController.getById))

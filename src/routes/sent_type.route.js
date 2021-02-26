@@ -8,7 +8,7 @@ const auth = require('../middleware/auth.middleware')
 router.get('/all', awaitHandler(SentTypeController.getAll))
 
 //get one 
-router.get('/:sid', awaitHandler(SentTypeController.getById))
+router.get('/:id', auth(), awaitHandler(SentTypeController.getById))
 
 //create 
 router.post('/create',auth(), awaitHandler(SentTypeController.create))
