@@ -57,13 +57,12 @@ class ProductModel {
 
     update = async (params, id) => {
         //search stock_id
-        const stockSQL = `SELECT stock_id FROM products WHERE pid = '${params['pid']}'`;
+        const stockSQL = `SELECT stock_id FROM ${this.table} WHERE pid = '${id}'`;
 
         var stock_id = await query (stockSQL);
 
         //update stock witch stock_id
         const remainSQL = `UPDATE stock SET remain = ${params['stock']} WHERE stock_id = '${stock_id[0]['stock_id']}'`;
-
         await query(remainSQL);
 
         //update products data

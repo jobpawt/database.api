@@ -7,7 +7,39 @@ class BookModel{
 
     find = async(params = {}) => {
         const keys = Object.keys(params) 
+        /*
         let sql = `SELECT * FROM ${this.table}`
+        */
+        
+        let sql = `
+            SELECT book.book_id,
+                    book.uid,
+                    book.pre_id,
+                    book.send_type_id,
+                    book.amount,
+                    book.sum,
+                    book.date,
+                    book.payment_id,
+                    book.status,
+                    send_type.type as send_type,
+                    send_type.recive_date,
+                    send_type.position,
+                    send_type.address,
+                    send_type.phone,
+                    pre_products.name as preOrder_name,
+                    pre_products.status as preOrder_status,
+                    pre_products.sid,
+                    payment.type as payment_type,
+                    payment.url as payment_url,
+                    payment.status as payment_status
+                    FROM book 
+                    INNER JOIN send_type
+                    ON book.send_type_id = send_type.send_type_id
+                    INNER JOIN  pre_products
+                    ON book.pre_id = pre_products.pre_id
+                    INNER JOIN payment
+                    ON book.payment_id = payment.payment_id
+        `;
         if(keys.length == 0)
             return await query(sql)
         const {columns, values} = pairSQL(params)    
