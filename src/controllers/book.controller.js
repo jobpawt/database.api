@@ -21,17 +21,17 @@ class BookController{
     }
 
     update = async(req, res, next) => {
-        const result = await BookModel.update(req.body, req.body.id)
+        const result = await BookModel.update(req.body, req.params.id)
         if(!result)
             throw new HttpException(404, 'Something went wrong')
-        res.staus(200).send(`${this.table} was edited`)
+        res.status(200).send(`${this.table} was edited`)
     }
 
     delete = async(req, res, next) => {
         const result = await BookModel.delete({book_id : req.params.id})
         if(!result)
             throw new HttpException(404, `${this.table} not found`)
-        res.staus(200).send(`${this.table} was deleted`)
+        res.status(200).send(`${this.table} was deleted`)
     }
 
     create = async(req, res, next) => {

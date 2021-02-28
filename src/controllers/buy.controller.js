@@ -21,7 +21,7 @@ class BuyController{
     }
 
     update = async(req, res, next) => {
-        const result = await BuyModel.update(req.body, req.body.id)
+        const result = await BuyModel.update(req.body, req.params.id)
         if(!result)
             throw new HttpException(404, 'Something went wrong')
         res.status(200).send(`${this.table} was edited`)

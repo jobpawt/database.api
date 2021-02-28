@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs')
+const crypto = require('crypto')
+
 const HttpException = require('../utils/HttpException.utils')
 
 class CreateID {
@@ -7,7 +9,7 @@ class CreateID {
             throw new HttpException(501, 'Invalid input')
         const values = Object.values(data)
         const dataString = values.map(value => `${value}`).join()
-        return await bcrypt.hash(dataString, 8)
+        return await crypto.randomBytes(16).toString("hex") 
     }    
 }
 
